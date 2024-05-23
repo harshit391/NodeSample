@@ -2,38 +2,42 @@
 <html>
 <head>
     <title>Survey Form</title>
+    <link rel="stylesheet" href="/css/style.css">
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
 </head>
 <body>
     <div id="google_translate_element"></div>
     <div id="fillIt"></div>
-    <h1>Survey For</h1>
+    <h1>Survey Form</h1>
     <form id="survey-form" method="POST" action="/">
-        <div class="question" id="question-{{ i }}">
+        <% for(let i = 1; i < 43; i++) { %>
+            <div class="question" id="question-<%= i  %>">
+                <p>Q<%= i %> <%= questions[i-1] %></p>    
+                <div class="options">
+                    <label><input type="radio" name="q<%= i  %>" value="1" required> 1 - Did not apply to me at all</label>
+                    <label><input type="radio" name="q<%= i %>" value="2"> 2 - Applied to me to some degree, or some of the time</label>
+                    <label><input type="radio" name="q<%= i  %>" value="3"> 3 - Applied to me to a considerable degree, or a good part of the time</label>
+                    <label><input type="radio" name="q<%= i  %>" value="4"> 4 - Applied to me very much, or most of the time</label>
+                </div>
+            </div>
+        <% } %>
+
+        <% for( let i = 1; i < 11; i++ ) { %>
+        <div class="question" id="tipi-question-<%= i + 1 %>">
+            <p>TIPI<%= i %> <%= tipi_questions[i-1] %></p>
             <div class="options">
-                <label><input type="radio" name="q{{ i }}" value="1" required> 1 - Did not apply to me at all</label>
-                <label><input type="radio" name="q{{ i }}" value="2"> 2 - Applied to me to some degree, or some of the time</label>
-                <label><input type="radio" name="q{{ i }}" value="3"> 3 - Applied to me to a considerable degree, or a good part of the time</label>
-                <label><input type="radio" name="q{{ i }}" value="4"> 4 - Applied to me very much, or most of the time</label>
+                <label><input type="radio" name="tipi<%= i %>" value="1" required> 1 - Disagree strongly</label>
+                <label><input type="radio" name="tipi<%= i %>" value="2"> 2 - Disagree moderately</label>
+                <label><input type="radio" name="tipi<%= i %>" value="3"> 3 - Disagree a little</label>
+                <label><input type="radio" name="tipi<%= i %>" value="4"> 4 - Neither agree nor disagree</label>
+                <label><input type="radio" name="tipi<%= i %>" value="5"> 5 - Agree a little</label>
+                <label><input type="radio" name="tipi<%= i %>" value="6"> 6 - Agree moderately</label>
+                <label><input type="radio" name="tipi<%= i %>" value="7"> 7 - Agree strongly</label>
             </div>
         </div>
+        <% } %>
 
-        <!-- {% for i in range(1, 11) %}
-        <div class="question" id="tipi-question-{{ i }}">
-            <p>TIPI{{ i }} {{ tipi_questions[i-1] }}</p>
-            <div class="options">
-                <label><input type="radio" name="tipi{{ i }}" value="1" required> 1 - Disagree strongly</label>
-                <label><input type="radio" name="tipi{{ i }}" value="2"> 2 - Disagree moderately</label>
-                <label><input type="radio" name="tipi{{ i }}" value="3"> 3 - Disagree a little</label>
-                <label><input type="radio" name="tipi{{ i }}" value="4"> 4 - Neither agree nor disagree</label>
-                <label><input type="radio" name="tipi{{ i }}" value="5"> 5 - Agree a little</label>
-                <label><input type="radio" name="tipi{{ i }}" value="6"> 6 - Agree moderately</label>
-                <label><input type="radio" name="tipi{{ i }}" value="7"> 7 - Agree strongly</label>
-            </div>
-        </div>
-        {% endfor %}
-
-        <div class="question" id="additional-question-1">
+       <div class="question" id="additional-question-1">
             <p>How much education have you completed?</p>
             <div class="options">
                 <label><input type="radio" name="education" value="1" required> Less than high school</label>
@@ -127,11 +131,12 @@
         <div class="nav-buttons">
             <button type="button" class="nav-button" id="prev-button">Previous</button>
             <button type="button" class="nav-button" id="next-button">Next</button>
-        </div> -->
+        </div> 
 
         <input type="submit" value="Submit" id="submit-button" style="display: none;">
     </form>
 
+    <script src="/js/form_new.js"></script>
     <!-- <script src="{{ url_for('static', filename='js/form_new.js') }}"></script> -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
