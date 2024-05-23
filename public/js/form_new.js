@@ -6,9 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = document.getElementById('next-button');
     const submitButton = document.getElementById('submit-button');
     const fillBtn = document.getElementById('fillIt');
+    const myForm = document.getElementById("survey-form")
+
+    const handleSubmit = () => {
+        console.log("Submitted");
+    }
+
+    submitButton.addEventListener('click', handleSubmit);
 
     document.addEventListener("keydown", (event) => {
         let buttons = questions[currentQuestion].querySelectorAll('input[type="radio"]');
+        if (event.key=="Enter" && currentQuestion == totalQuestions-1) {
+            if (validateCurrentQuestion()) {
+                fillBtn.textContent = "";
+                myForm.submit();
+                return;
+            } else {
+                fillBtn.textContent = "Please select an option before proceeding !!";
+                return;
+            }
+        }
         let key = Number(event.key)-1;
         if (key < buttons.length) {
             fillBtn.textContent = "";
@@ -42,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showQuestion(currentQuestion);
             updateButtons();
         }
-    }
+    }   
 
     const handleNext = () => {
         if (validateCurrentQuestion()) {
@@ -54,8 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
             fillBtn.textContent = "Please select an option before proceeding !!";
-        }
-        
+        } 
     }
 
     nextButton.addEventListener('click', handleNext);
@@ -63,9 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
     prevButton.addEventListener('click', handlePrev);
 
     document.addEventListener('keydown', function(event) {
+        
         if (event.key === 'Enter' || event.keyCode === 13) {
             event.preventDefault();
-            handleNext();
+            if (submitButton.style.display === 'block') {
+                handleSubmit();
+            } else {
+                handleNext();
+            }
         } else if (event.key === 'Backspace' || event.keyCode === 8) {
             event.preventDefault();
             handlePrev();
