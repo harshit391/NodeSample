@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let currentQuestion = 0;
-    const totalQuestions = 60; // Update this to the actual number of questions
+    const totalQuestions = 60;
     const questions = document.querySelectorAll('.question');
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
