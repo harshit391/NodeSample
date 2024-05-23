@@ -9,9 +9,7 @@
     <div id="fillIt"></div>
     <h1>Survey For</h1>
     <form id="survey-form" method="POST" action="/">
-        <!-- <% for( let index = 0; index < 42; index++ ) { %> -->
         <div class="question" id="question-{{ i }}">
-            <!-- <p>Q<% index %> <% questions[i-1] %></p> -->
             <div class="options">
                 <label><input type="radio" name="q{{ i }}" value="1" required> 1 - Did not apply to me at all</label>
                 <label><input type="radio" name="q{{ i }}" value="2"> 2 - Applied to me to some degree, or some of the time</label>
@@ -19,7 +17,6 @@
                 <label><input type="radio" name="q{{ i }}" value="4"> 4 - Applied to me very much, or most of the time</label>
             </div>
         </div>
-        <!-- <% } %> -->
 
         <!-- {% for i in range(1, 11) %}
         <div class="question" id="tipi-question-{{ i }}">
