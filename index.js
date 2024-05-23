@@ -5,8 +5,10 @@ const express = require("express");
 
 const app = express();
 
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-    res.send("Home Page");
+    res.render("home");
 });
 
 // function myHandler(req, res) {console.log("Request received");
