@@ -40,13 +40,12 @@ app.post('/', (req, res) => {
             res.status(500).send('Internal server error');
         } else {
             console.log('Prediction result:', result);
-            res.render('result.html', { result: result[0] });
         }
     });
 });
 
 // Serve static files (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
